@@ -12,3 +12,13 @@ for i, digit in enumerate(N[::-1]):  # N의 가장 오른쪽 자리부터 0번�
         num += (ord(digit) - ord('A') + 10) * \
             (B ** i)  # 알파벳에 해당하는 숫자를 B의 i승을 곱해서 더함
 print(num)
+
+N, B = input().split()
+B = int(B)
+num = 0
+for i, digit in enumerate(N[::-1]):
+    if digit.isdigit():
+        num += int(digit) * (B ** i)
+    else:
+        num += (ord(digit) - ord('A') + 10) * (B ** i)
+print(num)
