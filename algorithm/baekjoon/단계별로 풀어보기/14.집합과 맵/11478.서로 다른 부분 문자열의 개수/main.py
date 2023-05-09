@@ -16,4 +16,6 @@ while True:
     part += 1
 
 arr.append(S)
+
+
 print(len(set(arr)))
