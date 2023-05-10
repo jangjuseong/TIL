@@ -2,12 +2,28 @@ import sys
 
 sys.stdin = open('../../../example.txt', 'r', encoding='utf-8')
 
+
+def primary_number(A):
+    divisor = []
+    num = 2
+    isTrue = True
+    while isTrue:
+        if A % num == 0:
+            divisor.append(num)
+            A = A / num
+            if A == 1:
+                isTrue = False
+            num = 2
+        else:
+            num += 1
+
+    return divisor
+
+
 T = int(input())
 for i in range(T):
     a, b = map(int, input().split())
-    middle_result = a * b
-    minimum = min(a, b)
-    for i in range(1, minimum):
-        if middle_result % i == 0:
-            middle_result = middle_result / i
-    print(int(middle_result))
+    arr_a = primary_number(a)
+    arr_b = primary_number(b)
+    print(arr_a)
+    print(arr_b)
