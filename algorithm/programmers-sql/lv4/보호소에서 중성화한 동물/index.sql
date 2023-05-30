@@ -1,0 +1,27 @@
+SELECT
+  C.ANIMAL_ID,
+  C.ANIMAL_TYPE,
+  C.NAME
+FROM
+  (
+    SELECT
+      ANIMAL_ID,
+      ANIMAL_TYPE,
+      NAME,
+      SEX_UPON_INTAKE
+    FROM
+      ANIMAL_INS
+    WHERE
+      SEX_UPON_INTAKE LIKE '%Intact%'
+  ) C
+  INNER JOIN (
+    SELECT
+      ANIMAL_ID,
+      ANIMAL_TYPE,
+      NAME,
+      SEX_UPON_OUTCOME
+    FROM
+      ANIMAL_OUTS
+    WHERE
+      SEX_UPON_OUTCOME NOT LIKE '%Intact%'
+  ) B ON C.ANIMAL_ID = B.ANIMAL_ID;

@@ -1,0 +1,23 @@
+SELECT
+  B.CATEGORY,
+  B.PRICE AS MAX_PRICE,
+  B.PRODUCT_NAME
+FROM
+  (
+    SELECT
+      CATEGORY,
+      PRODUCT_NAME,
+      PRICE,
+      ROW_NUMBER() OVER (
+        PARTITION BY CATEGORY
+        ORDER BY
+          PRICE DESC
+      ) AS RN
+    FROM
+      FOOD_PRODUCT
+  ) B
+WHERE
+  RN = 1
+  AND CATEGORY IN('과자', '국', '김치', '식용유')
+ORDER BY
+  PRICE DESC
