@@ -22,5 +22,3 @@ def solution(operations):
         return [max(heap), min(heap)]
     else:
         return [0, 0]
-
-    return answer
