@@ -7,31 +7,35 @@ const inputs = fs.readFileSync(filePath).toString().trim().split('\n');
 
 const N = inputs[0];
 const M = inputs[2];
-const A = inputs[1].split(' ').map(Number);
+
+let A = inputs[1].split(' ').map(Number);
 const arr = inputs[3].split(' ').map(Number);
+
+A = A.sort((a, b) => a - b);
+
 const answer = [];
 
-A.sort((a, b) => a - b);
-for (let i = 0; i < arr.length; i++) {
-  let left = 0;
-  let right = A.length - 1;
-  let mid = Math.floor((left + right) / 2);
-  let isExist = false;
-  while (left <= right) {
-    mid = Math.floor((left + right) / 2);
+const binarySearch = (array, target) => {
+  let start = 0;
+  let end = array.length - 1;
 
-    if (A[mid] === arr[i]) {
-      isExist = true;
-      break;
-    }
+  while (start <= end) {
+    let mid = Math.floor((start + end) / 2);
 
-    if (arr[i] > A[mid]) {
-      left = mid + 1;
+    if (array[mid] === target) {
+      return true;
+    } else if (target > array[mid]) {
+      start = mid + 1;
     } else {
-      right = mid - 1;
+      end = mid - 1;
     }
   }
-  isExist ? answer.push(1) : answer.push(0);
+
+  return false;
+};
+
+for (let i = 0; i < M; i++) {
+  answer.push(binarySearch(A, arr[i]) ? 1 : 0);
 }
 
 console.log(answer.join('\n'));
