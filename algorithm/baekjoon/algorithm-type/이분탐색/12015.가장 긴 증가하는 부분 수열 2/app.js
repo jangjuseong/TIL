@@ -7,7 +7,8 @@ const inputs = fs.readFileSync(filePath).toString().trim().split('\n');
 
 const N = +inputs[0];
 const A = inputs[1].split(' ').map(Number);
-const lis = [];
+const lis = []; // lis는 Longest Increasing Subsequence의 약자
+
 for (let i = 0; i < A.length; i++) {
   let start = 0;
   let end = lis.length;
