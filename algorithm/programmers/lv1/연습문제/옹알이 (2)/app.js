@@ -4,7 +4,7 @@ function solution(babbling) {
   for (let word of babbling) {
     let isPossible = true;
     let w = word;
-    let count = 0;
+
     let before = '-1';
 
     while (isPossible) {
